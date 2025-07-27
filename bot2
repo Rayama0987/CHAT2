@@ -1,0 +1,9 @@
+function addBot(room, botName) {
+  if (!roomBots[room]) roomBots[room] = [];
+  if (roomBots[room].length >= 100) return;
+
+  roomBots[room].push(botName);
+  setInterval(() => {
+    io.to(room).emit('message', { name: botName, message: 'こんにちは！私はBOTです' });
+  }, 5000);
+}
