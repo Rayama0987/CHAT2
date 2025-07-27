@@ -1,0 +1,7 @@
+socket.on('banUser', ({ room, targetName }) => {
+  if (socket.id === roomAdmins[room]) {
+    bannedUsers[room] = bannedUsers[room] || new Set();
+    bannedUsers[room].add(targetName);
+    io.to(room).emit('message', { name: 'システム', message: `${targetName} はBANされました` });
+  }
+});
